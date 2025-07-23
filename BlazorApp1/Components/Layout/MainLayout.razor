@@ -1,0 +1,48 @@
+﻿@inherits LayoutComponentBase
+@inject Services.UserStateService UserStateService
+@implements IDisposable
+
+
+<div class="page">
+    <div class="sidebar">
+        <NavMenu />
+    </div>
+
+    <main>
+        <div class="top-row px-4">
+            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank"><p>Hello, <strong>@UserStateService.Username</strong>!</p></a>
+        </div>
+
+        
+
+        <article class="content px-4">
+            @Body
+        </article>
+
+    </main>
+</div>
+
+<div id="blazor-error-ui">
+    An unhandled error has occurred.
+    <a href="" class="reload">Reload</a>
+    <a class="dismiss">🗙</a>
+</div>
+
+
+@code {
+    protected override void OnInitialized()
+    {
+        // Subscribe to the OnChange event when the layout component initializes
+        // When UserStateService.Username changes, StateHasChanged() will be called,
+        // forcing this layout to re-render and update the displayed username.
+        UserStateService.OnChange += StateHasChanged;
+    }
+
+    // This method is part of the IDisposable interface.
+    // It's called when the component is being removed from the UI.
+    // It's crucial to unsubscribe from events here to prevent memory leaks.
+    public void Dispose()
+    {
+        UserStateService.OnChange -= StateHasChanged;
+    }
+}

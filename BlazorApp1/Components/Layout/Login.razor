@@ -1,0 +1,43 @@
+﻿@inject IJSRuntime JSRuntime
+@inject Services.UserStateService UserStateService
+
+<h3>Login</h3>
+
+<table>
+    <tr>
+        <td>
+            <label for="Usuario">Usuário:</label>
+            <input type="text" id="Usuario" @bind="usuario">
+        </td>
+        <td>
+            <label for="Senha">Senha:</label>
+            <input type="password" id="Senha" value="abcde"> @* Keeping this as-is, not bound for simplicity in this example *@
+        </td>
+    </tr>
+</table>
+<br />
+<button id="Login" class="btn btn-primary" @onclick="SetUsername">Login</button> @* Renamed method for clarity *@
+<button id="Alert" class="btn btn-info" @onclick="ShowUserAlert">Show Message</button> @* New method for the alert button *@
+
+@code {
+
+    private string usuario = ""; // This will hold the username typed in the field
+
+    // Inject IJSRuntime to call JavaScript functions
+    // @inject IJSRuntime JSRuntime is already added at the top of the component
+
+    private void SetUsername()
+    {
+        // This method will now just set the username, perhaps for a login attempt
+        usuario = "dl01545";
+        UserStateService.Username = usuario;
+        // In a real scenario, this button would trigger actual login logic
+    }
+
+    private async Task ShowUserAlert()
+    {
+        // Use JSRuntime to invoke the JavaScript 'alert' function
+        // The message will include the current value of the 'usuario' field
+        await JSRuntime.InvokeVoidAsync("alert", $"O nome de usuário digitado é: {usuario}");
+    }
+}
