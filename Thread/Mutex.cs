@@ -3,12 +3,9 @@ using System.Threading.Tasks;
 using System.Management;
 using System.Collections.Immutable;
 
-//
 // Mutex is used to protect resources on operational system level. Different 
 // application podem usar o mesmo arquivo, impedir que múltiplas instâncias 
 // do mesmo app rodem ao mesmo tempo, etc.
-//
-
 public class Program
 {
     public static void Main()
