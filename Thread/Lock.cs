@@ -3,9 +3,7 @@ using System.Threading.Tasks;
 using System.Management;
 using System.Collections.Immutable;
 
-//
 // Locks automatically released when leaving the lock block or fail
-//
 public class Program
 {
     public static void Main()
@@ -37,10 +35,7 @@ public class Program
     }
 }
 
-
-//
 // Using Interlocked
-//
 using System;
 using System.Threading; // Required for Thread and Interlocked
 
@@ -72,18 +67,13 @@ public class Program
     }
 }
 
-
-//
 // Using Monitor.Enter (at the end locks are compiled into monitor)
-//
 using System;
 using System.Threading.Tasks;
 using System.Management;
 using System.Collections.Immutable;
 
-//
 // Locks automatically released when leaving the lock block or fail
-//
 public class Program
 {
     public static void Main()
