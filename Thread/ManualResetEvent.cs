@@ -39,7 +39,7 @@ class Program
     static void WorkerRun()
     {
         Console.WriteLine($"{Thread.CurrentThread.Name}: Arrived at the starting line.");
-        
+
         // Block until the Main thread calls Set()
         _startGate.Wait(); 
 
